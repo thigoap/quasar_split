@@ -20,7 +20,7 @@
 
 <script setup>
 defineOptions({
-  name: 'EssentialLink'
+  name: 'NavLinks'
 })
 
 const props = defineProps({
