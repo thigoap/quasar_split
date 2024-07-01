@@ -1,15 +1,15 @@
 <template>
   <q-item
-    class="text-white"
+    class='text-white'
     clickable
-    tag="a"
-    :to="props.link"
+    tag='a'
+    :to='props.link'
   >
     <q-item-section
-      v-if="props.icon"
+      v-if='props.icon'
       avatar
     >
-      <q-icon :name="props.icon" />
+      <q-icon :name='props.icon' />
     </q-item-section>
 
     <q-item-section>

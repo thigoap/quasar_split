@@ -1,13 +1,13 @@
 <template>
 	<q-slide-item
-		@right="onGuestSlideRight"
-		right-color="red"
+		@right='onGuestSlideRight'
+		right-color='red'
 	>
 		<!-- <template v-slot:left>
-			<q-icon name="done" />
+			<q-icon name='done' />
 		</template> -->
 		<template v-slot:right>
-			<q-icon name="delete" />
+			<q-icon name='delete' />
 		</template>
 
 		<q-item
@@ -23,9 +23,11 @@
 
 import { useQuasar } from 'quasar'
 import { useStoreGuests } from 'src/stores/storeGuests'
+import { useI18n } from 'vue-i18n'
 
 /* quasar */
 const $q = useQuasar()
+const { t } = useI18n()
 
 /* stores */
 const storeGuests = useStoreGuests()
@@ -41,21 +43,21 @@ const props = defineProps({
 /* slide items */
 const onGuestSlideRight = ({ reset }) => {
   $q.dialog({
-    title: 'Delete Guest',
-    message: `Delete this Guest?
-    <div class="q-mt-sm text-weight-bold">
-      ${ props.guest.name }
-    </div>
+    title: t('pageGuests.deletedModalTitle'),
+    message: `${ t('pageGuests.deletedModalMsg') }
+    <span class='q-mt-sm text-weight-bold'>
+      ${ props.guest.name }</span>?
     `,
     cancel: true,
     persistent: true,
     html: true,
     ok: {
-      label: 'Delete',
+      label: t('pageGuests.deletedModalMsg'),
       color: 'negative',
       noCaps: true
     },
     cancel: {
+      label: t('app.modalMsgCancel'),
       color: 'primary',
       noCaps: true
     },

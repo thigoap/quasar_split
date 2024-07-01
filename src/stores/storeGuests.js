@@ -1,9 +1,12 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { uid, Notify } from 'quasar'
+import { useI18n } from 'vue-i18n'
+
 
 export const useStoreGuests = defineStore('guests', () => {
   /* states */
+	const { t } = useI18n()
 
 	const guests = ref([
 		{
@@ -28,7 +31,7 @@ export const useStoreGuests = defineStore('guests', () => {
 		const index = guests.value.findIndex(guest => guest.id === guestId)
 		guests.value.splice(index, 1)
 		Notify.create({
-			message: 'Guest deleted',
+			message: t('pageGuests.deletedToast'),
 			position: 'top-right'
 		})
 	}
