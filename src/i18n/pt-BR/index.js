@@ -10,6 +10,8 @@ export default {
     deletedToast: 'Convidado removido',
     deletedModalTitle: 'Remover Convidado',
     deletedModalMsg: 'Remover',
-    addGuestInputPlaceholder: 'Nome'
+    addGuestInputPlaceholder: 'Nome',
+    addGuestModalEmptyMsg: 'Digite um nome.',
+    addGuestModalDupMsg: 'Nome existente. Utilize um diferente.',
 	}
 }

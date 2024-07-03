@@ -8,22 +8,21 @@ export const useStoreGuests = defineStore('guests', () => {
   /* states */
 	const { t } = useI18n()
 
-	const guests = ref([
-		{
-			id: '1',
-			name: 'Thiago'
-		},
-		{
-			id: '2',
-			name: 'Verônica'
-		}
-	])
+	const guests = ref([])
 
   /* getters */
+	function capitalize(name){
+		let nameTrim = name.trim()
+		let nameArray = nameTrim.split(' ')
+		const capitalizedName = nameArray.map(word =>
+			word[0].toUpperCase() + word.slice(1).toLowerCase()
+		).join(' ')
+		return capitalizedName
+	}
 
   /* actions */
 	const addGuest = (addGuestForm) => {
-		const newGuest = Object.assign({}, addGuestForm, { id: uid() })
+		const newGuest = Object.assign({}, {name: capitalize(addGuestForm.name)}, { id: uid() })
 		guests.value.push(newGuest)
 	}
 
@@ -36,13 +35,14 @@ export const useStoreGuests = defineStore('guests', () => {
 		})
 	}
 
+
   /* return */
   return { 
 		/* states */ 
 		guests,
 		
 		/* getters */
-
+		capitalize,
 
 		/* actions */
 		addGuest,	deleteGuest
