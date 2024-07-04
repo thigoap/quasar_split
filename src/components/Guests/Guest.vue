@@ -23,6 +23,7 @@
 
 import { useQuasar } from 'quasar'
 import { useStoreGuests } from 'src/stores/storeGuests'
+import { useStoreSettings } from 'src/stores/storeSettings';
 import { useI18n } from 'vue-i18n'
 
 /* quasar */
@@ -31,6 +32,7 @@ const { t } = useI18n()
 
 /* stores */
 const storeGuests = useStoreGuests()
+const storeSettings = useStoreSettings()
 
 /* props */
 const props = defineProps({
@@ -40,8 +42,12 @@ const props = defineProps({
   }
 })
 
-/* slide items */
 const onGuestSlideRight = ({ reset }) => {
+  if (storeSettings.settings.promptToDelete) promptToDelete(reset)
+  else storeGuests.deleteGuest(props.guest.id)
+}
+
+const promptToDelete = (reset) => {
   $q.dialog({
     title: t('pageGuests.deletedModalTitle'),
     message: `${ t('pageGuests.deletedModalMsg') }
@@ -66,6 +72,6 @@ const onGuestSlideRight = ({ reset }) => {
       }).onCancel(() => {
         reset()
       })
-  }
+}
 
 </script>

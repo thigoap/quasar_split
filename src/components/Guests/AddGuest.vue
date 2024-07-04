@@ -7,7 +7,7 @@
         v-model='addGuestForm.name'
         ref='nameRef'
         :placeholder= "$t('pageGuests.addGuestInputPlaceholder')"
-        bg-color='white'
+        :bg-color='useLightOrDark("white", "black")'
         outlined
         dense
       >
@@ -28,6 +28,7 @@
 
 import { useQuasar } from 'quasar'
 import { ref, reactive } from 'vue'
+import { useLightOrDark } from 'src/use/useLightOrDark'
 import { useStoreGuests } from 'src/stores/storeGuests'
 import { useI18n } from 'vue-i18n'
 

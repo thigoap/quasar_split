@@ -1,6 +1,8 @@
 <template>
   <q-layout view='hHh lpR lFf'>
-    <q-header elevated>
+    <q-header
+      :elevated='useLightOrDark(true, false)'
+    >
       <q-toolbar>
         <q-btn dense flat round icon='menu' @click='toggleLeftDrawer' />
         <q-toolbar-title>
@@ -26,12 +28,13 @@
       show-if-above
       bordered
     >
-    <q-item-label
+      <q-list>
+        <q-item-label
+          class="text-white"
           header
         >
-        {{ $t('app.drawerTitle') }}
+          {{ $t('app.drawerTitle') }}
         </q-item-label>
-      <q-list>
         <NavLink
           v-for='link in navLinks'
           :key='link.title'
@@ -53,6 +56,7 @@ defineOptions({
 
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useLightOrDark } from 'src/use/useLightOrDark'
 import NavLink from 'components/Nav/NavLink.vue'
 
 const { t } = useI18n()

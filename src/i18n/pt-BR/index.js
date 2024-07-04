@@ -6,6 +6,10 @@ export default {
 		about: 'Sobre',
     modalMsgCancel: 'Cancelar'
   },
+  settings: {
+    promptToDelete: 'Aviso ao deletar',
+    darkModeAuto: 'Padrão do dispositivo'
+  },
 	pageGuests: {
     deletedToast: 'Convidado removido',
     deletedModalTitle: 'Remover Convidado',

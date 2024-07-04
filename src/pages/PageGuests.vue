@@ -2,14 +2,20 @@
   <q-page>
     <div class='q-pa-md'>
 
-      <NoGuest 
-        v-if='!storeGuests.guests.length'
-      />
-
+      <transition
+        appear
+        enter-active-class="animated fadeIn slower"
+      >
+        <NoGuest 
+          v-if='!storeGuests.guests.length'
+        />
+      </transition>
+  
       <q-list
-        v-else
+        v-if='storeGuests.guests.length'
         bordered
         separator
+        class="guests"
       >
         <Guest 
           v-for='guest in storeGuests.guests'

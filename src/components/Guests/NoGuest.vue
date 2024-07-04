@@ -3,10 +3,16 @@
 		<q-icon 
 			name='groups'
 			size='100px'
-			color='grey-4'
+			:color='useLightOrDark("grey-4", "grey-10")'
 		/>
-		<div class='text-grey-6'>
+		<div 
+    :class='useLightOrDark("text-grey-6", "text-grey-9")'
+     >
 			Adicione convidados.
 		</div>
 	</div>
 </template>
+
+<script setup>
+import { useLightOrDark } from 'src/use/useLightOrDark'
+</script>
