@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import { uid, Notify } from 'quasar'
+import { ref, watch } from 'vue'
+import { uid, Notify, LocalStorage } from 'quasar'
 import { useI18n } from 'vue-i18n'
 
 
@@ -9,6 +9,10 @@ export const useStoreGuests = defineStore('guests', () => {
 	const { t } = useI18n()
 
 	const guests = ref([])
+
+  watch(guests.value, () => {
+    saveGuests()
+  })
 
   /* getters */
 	function capitalize(name){
@@ -35,6 +39,15 @@ export const useStoreGuests = defineStore('guests', () => {
 		})
 	}
 
+  const saveGuests = () => {
+    LocalStorage.set('guests', guests.value)
+  }
+
+  const loadGuests = () => {
+    const savedGuests = LocalStorage.getItem('guests')
+    if (savedGuests) Object.assign(guests.value, savedGuests)
+  }
+
 
   /* return */
   return { 
@@ -45,6 +58,6 @@ export const useStoreGuests = defineStore('guests', () => {
 		capitalize,
 
 		/* actions */
-		addGuest,	deleteGuest
+		addGuest,	deleteGuest, loadGuests
 	}
 })

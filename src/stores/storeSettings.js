@@ -1,38 +1,49 @@
 import { defineStore } from 'pinia'
 import { reactive, watch } from 'vue'
-import { Dark } from 'quasar'
+import { Dark, LocalStorage } from 'quasar'
 
 export const useStoreSettings = defineStore('settings', () => {
 
-	/* states */
-	const settings = reactive({
-		promptToDelete: true,
-		currencySymbol: '$',
-		darkMode: true
-	})
+  /* states */
+  const settings = reactive({
+    promptToDelete: true,
+    currencySymbol: '$',
+    darkMode: false
+  })
 
-	watch(() => settings.darkMode, value => {
-		Dark.set(value)
-	}, { immediate: true })
+  // watch darkMode
+  watch(() => settings.darkMode, value => {
+    Dark.set(value)
+  }, { immediate: true })
+
+  // watch settings
+  watch(settings, () => {
+    saveSettings()
+  })
+
+  /* getters */
 
 
-	/* getters */
+
+  /* actions */
+  const saveSettings = () => {
+    LocalStorage.set('settings', settings)
+  }
+
+  const loadSettings = () => {
+    const savedSettings = LocalStorage.getItem('settings')
+    if (savedSettings) Object.assign(settings, savedSettings)
+  }
 
 
+  /* return */
+  return { 
+    // state
+    settings,
 
-	/* actions */
+    // getters
 
-
-
-	/* return */
-
-	return { 
-		// state
-		settings
-
-		// getters
-
-		// actions
-	}
-	
+    // actions
+    loadSettings
+  }
 })
