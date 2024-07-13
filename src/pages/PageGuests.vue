@@ -13,8 +13,6 @@
   
       <q-list
         v-if='storeGuests.guests.length'
-        bordered
-        separator
         class="guests"
       >
         <Guest 
@@ -25,9 +23,7 @@
       </q-list>
 
     </div>
-    <q-footer
-      class='bg-transparent'
-    >
+    <q-footer>
     <AddGuest />
     </q-footer>
   </q-page>
@@ -36,7 +32,7 @@
 <script setup>
 defineOptions({
   name: 'PageGuests'
-});
+})
 
 import { useStoreGuests } from 'src/stores/storeGuests'
 import AddGuest from 'src/components/Guests/AddGuest.vue'

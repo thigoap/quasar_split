@@ -28,6 +28,7 @@ export const useStoreGuests = defineStore('guests', () => {
 	const addGuest = (addGuestForm) => {
 		const newGuest = Object.assign({}, {name: capitalize(addGuestForm.name)}, { id: uid() })
 		guests.value.push(newGuest)
+    console.log(guests.value)
 	}
 
 	const deleteGuest = (guestId) => {

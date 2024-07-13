@@ -1,17 +1,23 @@
 <template>
 	<q-slide-item
-		@right='onGuestSlideRight'
+		@right='onOrderSlideRight'
 		right-color='red'
 	>
-		<!-- <template v-slot:left>
-			<q-icon name='done' />
-		</template> -->
 		<template v-slot:right>
 			<q-icon name='delete' />
 		</template>
+
 		<q-item>
 			<q-item-section>
-				{{ guest.name }}
+        <q-item-label>
+          {{ order.item }} x {{ order.qtt }}
+        </q-item-label>
+        <q-item-label caption>
+          Lorem ipsum. 
+        </q-item-label>
+			</q-item-section>
+			<q-item-section side>
+				{{ useCurrencify(order.price * order.qtt) }}
 			</q-item-section>
 		</q-item>
 	</q-slide-item>
@@ -20,7 +26,8 @@
 <script setup>
 
 import { useQuasar } from 'quasar'
-import { useStoreGuests } from 'src/stores/storeGuests'
+import { useCurrencify } from 'src/use/useCurrencify'
+import { useStoreOrders } from 'src/stores/storeOrders'
 import { useStoreSettings } from 'src/stores/storeSettings';
 import { useI18n } from 'vue-i18n'
 
@@ -29,34 +36,34 @@ const $q = useQuasar()
 const { t } = useI18n()
 
 /* stores */
-const storeGuests = useStoreGuests()
+const storeOrders = useStoreOrders()
 const storeSettings = useStoreSettings()
 
 /* props */
 const props = defineProps({
-  guest: {
+  order: {
     type: Object,
     required: true
   }
 })
 
-const onGuestSlideRight = ({ reset }) => {
+const onOrderSlideRight = ({ reset }) => {
   if (storeSettings.settings.promptToDelete) promptToDelete(reset)
-  else storeGuests.deleteGuest(props.guest.id)
+  else storeOrders.deleteOrder(props.order.id)
 }
 
 const promptToDelete = (reset) => {
   $q.dialog({
-    title: t('pageGuests.deletedModalTitle'),
-    message: `${ t('pageGuests.deletedModalMsg') }
+    title: t('pageOrders.deletedModalTitle'),
+    message: `${ t('pageOrders.deletedModalMsg') }
     <span class='q-mt-sm text-weight-bold'>
-      ${ props.guest.name }</span>?
+      ${ props.order.item }</span>?
     `,
     cancel: true,
     persistent: true,
     html: true,
     ok: {
-      label: t('pageGuests.deletedModalMsg'),
+      label: t('pageOrders.deletedModalMsg'),
       color: 'negative',
       noCaps: true
     },
@@ -66,10 +73,9 @@ const promptToDelete = (reset) => {
       noCaps: true
     },
       }).onOk(() => {
-        storeGuests.deleteGuest(props.guest.id)
+        storeOrders.deleteOrder(props.order.id)
       }).onCancel(() => {
         reset()
       })
 }
-
 </script>
