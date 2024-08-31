@@ -26,7 +26,11 @@ export const useStoreGuests = defineStore('guests', () => {
 
   /* actions */
 	const addGuest = (addGuestForm) => {
-		const newGuest = Object.assign({}, {name: capitalize(addGuestForm.name)}, { id: uid() })
+		const newGuest = Object.assign(
+      {}, addGuestForm, 
+      { name: capitalize(addGuestForm.name) }, 
+      { id: uid() }
+    )
 		guests.value.push(newGuest)
     console.log(guests.value)
 	}
@@ -40,6 +44,20 @@ export const useStoreGuests = defineStore('guests', () => {
 		})
 	}
 
+  const addOrderToGuest = (orderForm) => {
+    const splitted = Math.round(((orderForm.price * orderForm.qtt) / orderForm.guestList.length) * 100) / 100
+    orderForm.guestList.forEach(
+      (guestName) => {
+        const index = getGuestIndexByName(guestName)
+        guests.value[index].orders.push({
+          'order id': orderForm.id,
+          'order item': orderForm.item,
+          'order splitted': splitted })
+        console.log('guest orders', guests.value[index].orders)
+      }
+    );
+  }
+
   const saveGuests = () => {
     LocalStorage.set('guests', guests.value)
   }
@@ -47,6 +65,11 @@ export const useStoreGuests = defineStore('guests', () => {
   const loadGuests = () => {
     const savedGuests = LocalStorage.getItem('guests')
     if (savedGuests) Object.assign(guests.value, savedGuests)
+  }
+
+  /* helpers */
+  const getGuestIndexByName = guestName => {
+    return guests.value.findIndex(guest => guest.name === guestName)
   }
 
 
@@ -59,6 +82,7 @@ export const useStoreGuests = defineStore('guests', () => {
 		capitalize,
 
 		/* actions */
-		addGuest,	deleteGuest, loadGuests
+		addGuest, deleteGuest, loadGuests,
+    addOrderToGuest
 	}
 })

@@ -44,7 +44,8 @@ const nameRef = ref(null)
 
 /* add Guest */
 const addGuestFormDefault = {
-  name: ''  
+  name: '',
+  orders: []
 }
 
 const addGuestForm = reactive({

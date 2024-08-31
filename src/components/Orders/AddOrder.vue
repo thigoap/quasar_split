@@ -74,7 +74,6 @@ const { t } = useI18n()
 
 /* stores */
 const storeOrders = useStoreOrders()
-// const guestsList = ref(true)
 
 /* order */
 const itemRef = ref(null)
@@ -84,7 +83,7 @@ const addOrderFormDefault = {
   item: '',
   price: null,
   qtt: null,
-  who: []
+  displayGuestList: null
 }
 
 const addOrderForm = reactive({
@@ -98,11 +97,10 @@ const addOrderFormReset = () => {
 
 const addOrderFormSubmit = () => {
   if (addOrderForm.item.trim().length 
-      && addOrderForm.price != '' 
-      && addOrderForm.qtt != ''
-      && storeOrders.guestList.length > 0
+      && addOrderForm.price != null && addOrderForm.price != '' 
+      && addOrderForm.qtt != null && addOrderForm.qtt != ''
+      && storeOrders.selectedGuestList.length > 0
     ) {
-    console.log(addOrderForm.price)
     storeOrders.addOrder(addOrderForm)
     addOrderFormReset()
     storeOrders.clearGuestList()

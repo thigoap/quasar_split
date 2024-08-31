@@ -10,10 +10,10 @@
 		<q-item>
 			<q-item-section>
         <q-item-label>
-          {{ order.item }} x {{ order.qtt }}
+          {{ order.qtt }} x {{ order.item }}
         </q-item-label>
         <q-item-label caption>
-          Lorem ipsum. 
+          {{ order.displayGuestList }}
         </q-item-label>
 			</q-item-section>
 			<q-item-section side>
