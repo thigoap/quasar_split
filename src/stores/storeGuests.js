@@ -33,6 +33,7 @@ export const useStoreGuests = defineStore('guests', () => {
     )
 		guests.value.push(newGuest)
     console.log(guests.value)
+    location.reload();
 	}
 
 	const deleteGuest = (guestId) => {
@@ -49,15 +50,35 @@ export const useStoreGuests = defineStore('guests', () => {
     orderForm.guestList.forEach(
       (guestName) => {
         const index = getGuestIndexByName(guestName)
+        console.log(guests.value[index].name)
         guests.value[index].orders.push({
-          'order id': orderForm.id,
-          'order item': orderForm.item,
-          'order splitted': splitted })
-        console.log('guest orders', guests.value[index].orders)
+          'order_id': orderForm.id,
+          'order_item': orderForm.item,
+          'order_splitted': splitted })
+      }
+    );
+    console.log('guest list updated', guests.value)
+  }
+
+  const deleteOrderFromGuest = (orderId, orderGuestList) => {
+    // console.log('delete guest list', orderGuestList)
+    orderGuestList.forEach(
+      (guestName) => {
+        const guestIndex = getGuestIndexByName(guestName)
+        if (guestIndex != undefined) {
+          // console.log('guest name', guests.value[index].name)
+          // console.log('guest obj', guests.value[guestIndex])
+          // console.log('guest orders', guests.value[guestIndex].orders)
+          const orderIndex = guests.value[guestIndex].orders.findIndex(order => order.order_id === orderId)
+          // console.log('order index', orderIndex)
+          guests.value[guestIndex].orders.splice(orderIndex, 1)
+          // console.log('guest orders', guests.value[guestIndex].orders)
+        }
       }
     );
   }
 
+  
   const saveGuests = () => {
     LocalStorage.set('guests', guests.value)
   }
@@ -83,6 +104,6 @@ export const useStoreGuests = defineStore('guests', () => {
 
 		/* actions */
 		addGuest, deleteGuest, loadGuests,
-    addOrderToGuest
+    addOrderToGuest, deleteOrderFromGuest
 	}
 })
