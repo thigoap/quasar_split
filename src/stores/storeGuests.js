@@ -24,6 +24,16 @@ export const useStoreGuests = defineStore('guests', () => {
 		return capitalizedName
 	}
 
+  function getGuestTotal(guest) {
+    let guestTotal = 0
+    guest.orders.forEach(
+      (order) => {
+        guestTotal = guestTotal + order.order_splitted
+      }
+    )
+    return guestTotal
+  }
+
   /* actions */
 	const addGuest = (addGuestForm) => {
 		const newGuest = Object.assign(
@@ -32,7 +42,7 @@ export const useStoreGuests = defineStore('guests', () => {
       { id: uid() }
     )
 		guests.value.push(newGuest)
-    console.log(guests.value)
+    // console.log(guests.value)
     location.reload();
 	}
 
@@ -50,13 +60,13 @@ export const useStoreGuests = defineStore('guests', () => {
     orderForm.guestList.forEach(
       (guestName) => {
         const index = getGuestIndexByName(guestName)
-        console.log(guests.value[index].name)
+        // console.log(guests.value[index].name)
         guests.value[index].orders.push({
           'order_id': orderForm.id,
           'order_item': orderForm.item,
           'order_splitted': splitted })
       }
-    );
+    )
     console.log('guest list updated', guests.value)
   }
 
@@ -75,7 +85,7 @@ export const useStoreGuests = defineStore('guests', () => {
           // console.log('guest orders', guests.value[guestIndex].orders)
         }
       }
-    );
+    )
   }
 
   
@@ -100,7 +110,7 @@ export const useStoreGuests = defineStore('guests', () => {
 		guests,
 		
 		/* getters */
-		capitalize,
+		capitalize, getGuestTotal,
 
 		/* actions */
 		addGuest, deleteGuest, loadGuests,

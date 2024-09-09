@@ -1,6 +1,6 @@
 <template>
 	<div class='text-center q-mb-sm'
-    :class='useLightOrDark("shadow-up-3", "bg-black")'>
+    :class='useLightOrDark("shadow-up-3 bg-white", "bg-black")'>
     <q-list
       v-if='storeGuests.guests.length'
       class="guests"
