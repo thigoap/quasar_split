@@ -2,10 +2,12 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import { uid, Notify, LocalStorage } from 'quasar'
 import { useI18n } from 'vue-i18n'
+import { useStoreSettings } from 'src/stores/storeSettings';
 
 
 export const useStoreGuests = defineStore('guests', () => {
   /* states */
+  const storeSettings = useStoreSettings()
 	const { t } = useI18n()
 
 	const guests = ref([])
@@ -35,7 +37,18 @@ export const useStoreGuests = defineStore('guests', () => {
         guestTotal = guestTotal + order.order_splitted
       }
     )
+    guestTotal = guestTotal + (storeSettings.settings.tax * guestTotal / 100)
     return guestTotal
+  }
+
+  function getTotal() {
+    let total = 0
+    guests.value.forEach(
+      (guest) => {
+        total = total + getGuestTotal(guest)
+      }
+    )
+    return total
   }
 
   /* actions */
@@ -113,7 +126,7 @@ export const useStoreGuests = defineStore('guests', () => {
 		
 		/* getters */
 		capitalize, getGuestTotal,
-    getGuestDelStatus,
+    getGuestDelStatus, getTotal,
 
 		/* actions */
 		addGuest, deleteGuest, loadGuests,

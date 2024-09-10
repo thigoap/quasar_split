@@ -7,6 +7,7 @@ export default {
     modalMsgCancel: 'Cancelar'
   },
   settings: {
+    includeTax: 'Taxa de serviço (%)',
     promptToDelete: 'Aviso ao deletar',
     darkModeAuto: 'Padrão do dispositivo'
   },

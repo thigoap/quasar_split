@@ -8,7 +8,8 @@ export const useStoreSettings = defineStore('settings', () => {
   const settings = reactive({
     promptToDelete: true,
     currencySymbol: '$',
-    darkMode: false
+    darkMode: false,
+    tax: 0
   })
 
   // watch darkMode

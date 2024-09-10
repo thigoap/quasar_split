@@ -14,6 +14,7 @@
         v-if='storeGuests.guests.length'
         class="guests"
       >
+        <BillTotal />
         <GuestBill
           v-for='guest in storeGuests.guests'
           :key='guest.id'
@@ -31,9 +32,10 @@
   defineOptions({
     name: 'PageBill'
   })
-  
-  import GuestBill from 'src/components/Bill/GuestBill.vue'
+
   import NoBill from 'src/components/Bill/NoBill.vue'
+  import GuestBill from 'src/components/Bill/GuestBill.vue'
+  import BillTotal from 'src/components/Bill/BillTotal.vue'
   import { useStoreGuests } from 'src/stores/storeGuests'
 
   /* stores */
