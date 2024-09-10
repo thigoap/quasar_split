@@ -24,6 +24,10 @@ export const useStoreGuests = defineStore('guests', () => {
 		return capitalizedName
 	}
 
+  function getGuestDelStatus(guest) {
+    return guest.orders.length > 0 ? true : false
+  }
+
   function getGuestTotal(guest) {
     let guestTotal = 0
     guest.orders.forEach(
@@ -42,7 +46,6 @@ export const useStoreGuests = defineStore('guests', () => {
       { id: uid() }
     )
 		guests.value.push(newGuest)
-    // console.log(guests.value)
     location.reload();
 	}
 
@@ -52,7 +55,7 @@ export const useStoreGuests = defineStore('guests', () => {
 		Notify.create({
 			message: t('pageGuests.deletedToast'),
 			position: 'top-right'
-		})
+		})   
 	}
 
   const addOrderToGuest = (orderForm) => {
@@ -60,7 +63,6 @@ export const useStoreGuests = defineStore('guests', () => {
     orderForm.guestList.forEach(
       (guestName) => {
         const index = getGuestIndexByName(guestName)
-        // console.log(guests.value[index].name)
         guests.value[index].orders.push({
           'order_id': orderForm.id,
           'order_item': orderForm.item,
@@ -111,6 +113,7 @@ export const useStoreGuests = defineStore('guests', () => {
 		
 		/* getters */
 		capitalize, getGuestTotal,
+    getGuestDelStatus,
 
 		/* actions */
 		addGuest, deleteGuest, loadGuests,

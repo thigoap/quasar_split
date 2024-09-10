@@ -41,8 +41,33 @@ const props = defineProps({
 })
 
 const onGuestSlideRight = ({ reset }) => {
-  if (storeSettings.settings.promptToDelete) promptToDelete(reset)
-  else storeGuests.deleteGuest(props.guest.id)
+  if (!storeGuests.getGuestDelStatus(props.guest)) {
+    if (storeSettings.settings.promptToDelete)
+      promptToDelete(reset)
+    else
+      storeGuests.deleteGuest(props.guest.id)
+    }
+  else {
+    promptForbidden(reset)
+  }
+}
+
+const promptForbidden = (reset) => {
+  $q.dialog({
+    title: t('pageGuests.deletedForbiddenModalTitle'),
+    message: `<span class='q-mt-sm text-weight-bold'>${ props.guest.name } 
+       <span class='text-weight-regular'> ${ t('pageGuests.deletedForbiddenModalMsg') }</span>
+    `,
+    persistent: true,
+    html: true,
+    ok: {
+      label: 'Ok',
+      color: 'primary',
+      noCaps: true
+    },
+      }).onOk(() => {
+        reset()
+      })
 }
 
 const promptToDelete = (reset) => {

@@ -14,6 +14,8 @@ export default {
     deletedToast: 'Convidado removido',
     deletedModalTitle: 'Remover Convidado',
     deletedModalMsg: 'Remover',
+    deletedForbiddenModalTitle: 'Remoção não permitida',
+    deletedForbiddenModalMsg: 'possui pedidos, não pode ser removido(a).',
     addGuestInputPlaceholder: 'Nome',
     addGuestModalEmptyMsg: 'Digite um nome.',
     addGuestModalDupMsg: 'Nome existente. Utilize um diferente.',
