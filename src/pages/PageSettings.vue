@@ -15,12 +15,12 @@
             v-model.number='storeSettings.settings.tax'
             input-class='text-center'
             ref='tax'
-            placeholder= '10'
+            placeholder='10'
             :bg-color='useLightOrDark("white", "black")'
             type='number'
             step='1'
             min='0'
-            max='99'
+            max='50'
             outlined
             dense
           >

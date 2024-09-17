@@ -1,12 +1,19 @@
 <template>
-  <!-- <transition
+  <q-item-label
+      @click='guestListToggle'
+      :class='useLightOrDark("text-grey-6", "text-grey-3")'
+      class='text-caption text-center q-mb-sm q-mt-xs text-weight-bolder'
+      style='text-decoration: underline'
+    >{{ t('pageOrders.guestsList') }}
+  </q-item-label>
+  <transition
     appear
     enter-active-class='animated fadeInUp'
     leave-active-class='animated fadeOutDown'
   >
-    <GuestPicker v-show='guestsList'/>
-  </transition> -->
-  <GuestPicker /> 
+  <GuestPicker v-if='guestListDisplay'/>
+  </transition>
+  <!-- <GuestPicker /> -->
 	<q-form
     @submit='addOrderFormSubmit'
     class='row q-px-sm q-pb-sm q-col-gutter-sm bg-primary'>
@@ -77,6 +84,7 @@ const storeOrders = useStoreOrders()
 
 /* order */
 const itemRef = ref(null)
+let guestListDisplay = ref(true)
 
 /* add Order */
 const addOrderFormDefault = {
@@ -118,5 +126,9 @@ const addOrderFormSubmit = () => {
   }
 }
 
+const guestListToggle = () => {
+  guestListDisplay.value = !guestListDisplay.value
+  console.log(guestListDisplay.value)
+}
 
 </script>

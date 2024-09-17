@@ -7,7 +7,7 @@ export default {
     modalMsgCancel: 'Cancelar'
   },
   settings: {
-    includeTax: 'Taxa de serviço (%)',
+    includeTax: 'Taxa de serviço (máx. 50%)',
     promptToDelete: 'Aviso ao deletar',
     darkModeAuto: 'Padrão do dispositivo'
   },
@@ -31,5 +31,6 @@ export default {
     addQttInputPlaceholder: 'Qtt',
     addOrderModalMsg: 'Preencha todos os campos e selecione para quem é o pedido.',
     addOrders: 'Adicione pedidos',
+    guestsList: 'Lista'
 	}
 }

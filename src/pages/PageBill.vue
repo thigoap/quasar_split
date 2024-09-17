@@ -22,9 +22,6 @@
         />
       </q-list>
     </div>
-    <q-footer>
-    <AddGuest />
-    </q-footer>
   </q-page>
 </template>
   

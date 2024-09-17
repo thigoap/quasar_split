@@ -22,6 +22,12 @@ export const useStoreSettings = defineStore('settings', () => {
     saveSettings()
   })
 
+  // watch tax
+  watch(() => settings.tax, value => {
+    if (settings.tax < 0) { settings.tax = 0}
+    if (settings.tax > 50) { settings.tax = 50}
+  })
+
   /* getters */
 
 
