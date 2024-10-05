@@ -2,13 +2,16 @@
   "name": "quasar-split",
   "version": "0.0.1",
   "description": "App to ease the division of bills.",
-  "productName": "Divide Ai",
+  "productName": "Snikt!",
   "author": "thigoap <appthigo@gmail.com>",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0",
+    "icons": "icongenie generate -i snikt-icon.png --skip-trim --splashscreen-color dedfe1",
+    "splash": "icongenie generate -b snikt-icon.png --splashscreen-color dedfe1",
     "dev": "quasar dev",
-    "build": "quasar build"
+    "dev:android": "quasar dev -m capacitor -T android",
+    "build": "quasar build",
+    "build:android": "quasar build -m capacitor -T android --ide"
   },
   "dependencies": {
     "vue-i18n": "^9.0.0",

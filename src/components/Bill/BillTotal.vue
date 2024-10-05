@@ -33,13 +33,4 @@ const { t } = useI18n()
 const storeGuests = useStoreGuests()
 const storeSettings = useStoreSettings()
 
-/* props */
-const props = defineProps({
-  guest: {
-    type: Object,
-    required: true
-  }
-})
-
-
 </script>

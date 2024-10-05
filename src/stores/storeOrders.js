@@ -76,7 +76,7 @@ export const useStoreOrders = defineStore('orders', () => {
 		orders.value.splice(index, 1)
 		Notify.create({
 			message: t('pageOrders.deletedToast'),
-			position: 'top-right'
+			position: 'top'
 		})
 	}
 

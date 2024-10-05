@@ -67,7 +67,7 @@ export const useStoreGuests = defineStore('guests', () => {
 		guests.value.splice(index, 1)
 		Notify.create({
 			message: t('pageGuests.deletedToast'),
-			position: 'top-right'
+			position: 'top'
 		})   
 	}
 

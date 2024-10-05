@@ -1,13 +1,12 @@
 export default {
   app: {
-    appName: 'Divide.Ai',
+    appName: 'Snikt!',
     drawerTitle: 'Menu',
 		settings: 'Configurações',
-		about: 'Sobre',
     modalMsgCancel: 'Cancelar'
   },
   settings: {
-    includeTax: 'Taxa de serviço (máx. 50%)',
+    includeTax: 'Taxa de serviço (0% - 50%)',
     promptToDelete: 'Aviso ao deletar',
     darkModeAuto: 'Padrão do dispositivo'
   },

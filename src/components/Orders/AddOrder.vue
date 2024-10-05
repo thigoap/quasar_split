@@ -37,7 +37,6 @@
         type='number'
         step='0.01'
         min='0'
-        v-select-all
         outlined
         dense
       />
@@ -51,7 +50,6 @@
         type='number'
         step='1'
         min='1'
-        v-select-all
         outlined
         dense
       />
@@ -84,7 +82,7 @@ const storeOrders = useStoreOrders()
 
 /* order */
 const itemRef = ref(null)
-let guestListDisplay = ref(true)
+let guestListDisplay = ref(false)
 
 /* add Order */
 const addOrderFormDefault = {
