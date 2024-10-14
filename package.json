@@ -6,7 +6,7 @@
   "author": "thigoap <appthigo@gmail.com>",
   "private": true,
   "scripts": {
-    "icons": "icongenie generate -i snikt-icon.png --skip-trim --splashscreen-color dedfe1",
+    "icons": "icongenie generate -i snikt-icon.png --skip-trim --splashscreen-color 1a5069",
     "splash": "icongenie generate -b snikt-splash-screen.png --splashscreen-color dedfe1",
     "dev": "quasar dev",
     "dev:android": "quasar dev -m capacitor -T android",

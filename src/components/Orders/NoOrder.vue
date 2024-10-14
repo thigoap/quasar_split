@@ -8,7 +8,8 @@
 		<div 
     :class='useLightOrDark("text-grey-6", "text-grey-9")'
      >
-     {{ $t('pageOrders.addOrders')}}
+     {{ $t('pageOrders.addOrders')}}<br><br>
+     {{ $t('pageOrders.addOrdersHowtoDel')}}
 		</div>
 	</div>
 </template>

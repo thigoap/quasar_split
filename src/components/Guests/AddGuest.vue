@@ -16,7 +16,7 @@
 		<div class='col col-auto'>
 			<q-btn
 				color='primary'
-				icon='add'
+				icon='person_add'
 				type='submit'
 				round
 			/>

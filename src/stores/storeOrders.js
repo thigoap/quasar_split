@@ -67,18 +67,29 @@ export const useStoreOrders = defineStore('orders', () => {
       storeGuests.addOrderToGuest(newOrder)
     }
 
-	const deleteOrder = (orderId) => {
+	const removeOrder = (orderId) => {
     const index = getOrderIndexById(orderId)
 
     const orderGuestList = orders.value[index].guestList
-    storeGuests.deleteOrderFromGuest(orderId, orderGuestList)
+    storeGuests.removeOrderFromGuest(orderId, orderGuestList)
 
 		orders.value.splice(index, 1)
 		Notify.create({
-			message: t('pageOrders.deletedToast'),
+			message: t('pageOrders.removedToast'),
 			position: 'top'
 		})
 	}
+
+  const removeAllOrders = () => {
+    // console.log('orders', orders.value)
+		orders.value.splice(0)
+		Notify.create({
+			message: t('pageOrders.removedAllToast'),
+			position: 'top'
+		})  
+    storeGuests.removeAllOrdersFromAllGuests()
+	}
+
 
   const saveOrders = () => {
     LocalStorage.set('orders', orders.value)
@@ -107,7 +118,7 @@ export const useStoreOrders = defineStore('orders', () => {
 
 		/* actions */
 		updateSelectedGuestList, clearGuestList,
-    addOrder,	deleteOrder,
+    addOrder,	removeOrder, removeAllOrders,
     loadOrders
 	}
 })

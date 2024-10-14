@@ -8,7 +8,8 @@
 		<div 
     :class='useLightOrDark("text-grey-6", "text-grey-9")'
      >
-     {{ $t('pageGuests.addGuests')}}
+     {{ $t('pageGuests.addGuests')}}<br><br>
+     {{ $t('pageGuests.addGuestsHowtoDel')}}
 		</div>
 	</div>
 </template>

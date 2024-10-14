@@ -3,9 +3,6 @@
 		@right='onGuestSlideRight'
 		right-color='red'
 	>
-		<!-- <template v-slot:left>
-			<q-icon name='done' />
-		</template> -->
 		<template v-slot:right>
 			<q-icon name='delete' />
 		</template>
@@ -45,7 +42,7 @@ const onGuestSlideRight = ({ reset }) => {
     if (storeSettings.settings.promptToDelete)
       promptToDelete(reset)
     else
-      storeGuests.deleteGuest(props.guest.id)
+      storeGuests.removeGuest(props.guest.id)
     }
   else {
     promptForbidden(reset)
@@ -54,9 +51,9 @@ const onGuestSlideRight = ({ reset }) => {
 
 const promptForbidden = (reset) => {
   $q.dialog({
-    title: t('pageGuests.deletedForbiddenModalTitle'),
+    title: t('pageGuests.removeForbiddenModalTitle'),
     message: `<span class='q-mt-sm text-weight-bold'>${ props.guest.name } 
-       <span class='text-weight-regular'> ${ t('pageGuests.deletedForbiddenModalMsg') }</span>
+       <span class='text-weight-regular'> ${ t('pageGuests.removeForbiddenModalMsg') }</span>
     `,
     persistent: true,
     html: true,
@@ -72,8 +69,8 @@ const promptForbidden = (reset) => {
 
 const promptToDelete = (reset) => {
   $q.dialog({
-    title: t('pageGuests.deletedModalTitle'),
-    message: `${ t('pageGuests.deletedModalMsg') }
+    title: t('pageGuests.removeModalTitle'),
+    message: `${ t('pageGuests.removeModalMsg') }
     <span class='q-mt-sm text-weight-bold'>
       ${ props.guest.name }</span>?
     `,
@@ -81,7 +78,7 @@ const promptToDelete = (reset) => {
     persistent: true,
     html: true,
     ok: {
-      label: t('pageGuests.deletedModalMsg'),
+      label: t('pageGuests.removeModalMsg'),
       color: 'negative',
       noCaps: true
     },
@@ -91,7 +88,7 @@ const promptToDelete = (reset) => {
       noCaps: true
     },
       }).onOk(() => {
-        storeGuests.deleteGuest(props.guest.id)
+        storeGuests.removeGuest(props.guest.id)
       }).onCancel(() => {
         reset()
       })

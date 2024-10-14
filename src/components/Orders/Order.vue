@@ -49,13 +49,13 @@ const props = defineProps({
 
 const onOrderSlideRight = ({ reset }) => {
   if (storeSettings.settings.promptToDelete) promptToDelete(reset)
-  else storeOrders.deleteOrder(props.order.id)
+  else storeOrders.removeOrder(props.order.id)
 }
 
 const promptToDelete = (reset) => {
   $q.dialog({
-    title: t('pageOrders.deletedModalTitle'),
-    message: `${ t('pageOrders.deletedModalMsg') }
+    title: t('pageOrders.removeModalTitle'),
+    message: `${ t('pageOrders.removeModalMsg') }
     <span class='q-mt-sm text-weight-bold'>
       ${ props.order.item }</span>?
     `,
@@ -63,7 +63,7 @@ const promptToDelete = (reset) => {
     persistent: true,
     html: true,
     ok: {
-      label: t('pageOrders.deletedModalMsg'),
+      label: t('pageOrders.removeModalMsg'),
       color: 'negative',
       noCaps: true
     },
@@ -73,7 +73,7 @@ const promptToDelete = (reset) => {
       noCaps: true
     },
       }).onOk(() => {
-        storeOrders.deleteOrder(props.order.id)
+        storeOrders.removeOrder(props.order.id)
       }).onCancel(() => {
         reset()
       })

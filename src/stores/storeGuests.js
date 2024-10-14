@@ -3,11 +3,13 @@ import { ref, watch } from 'vue'
 import { uid, Notify, LocalStorage } from 'quasar'
 import { useI18n } from 'vue-i18n'
 import { useStoreSettings } from 'src/stores/storeSettings';
+import { useStoreOrders } from './storeOrders';
 
 
 export const useStoreGuests = defineStore('guests', () => {
   /* states */
   const storeSettings = useStoreSettings()
+  const storeOrders = useStoreOrders()
 	const { t } = useI18n()
 
 	const guests = ref([])
@@ -62,15 +64,24 @@ export const useStoreGuests = defineStore('guests', () => {
     location.reload();
 	}
 
-	const deleteGuest = (guestId) => {
+	const removeGuest = (guestId) => {
 		const index = guests.value.findIndex(guest => guest.id === guestId)
 		guests.value.splice(index, 1)
 		Notify.create({
-			message: t('pageGuests.deletedToast'),
+			message: t('pageGuests.removedToast'),
 			position: 'top'
 		})   
 	}
 
+  const removeAllGuests = () => {
+    storeOrders.removeAllOrders()
+		guests.value.splice(0)
+		Notify.create({
+			message: t('pageGuests.removedAllToast'),
+			position: 'top'
+		}) 
+	}
+  
   const addOrderToGuest = (orderForm) => {
     const splitted = Math.round(((orderForm.price * orderForm.qtt) / orderForm.guestList.length) * 100) / 100
     orderForm.guestList.forEach(
@@ -85,7 +96,7 @@ export const useStoreGuests = defineStore('guests', () => {
     console.log('guest list updated', guests.value)
   }
 
-  const deleteOrderFromGuest = (orderId, orderGuestList) => {
+  const removeOrderFromGuest = (orderId, orderGuestList) => {
     // console.log('delete guest list', orderGuestList)
     orderGuestList.forEach(
       (guestName) => {
@@ -99,6 +110,15 @@ export const useStoreGuests = defineStore('guests', () => {
           guests.value[guestIndex].orders.splice(orderIndex, 1)
           // console.log('guest orders', guests.value[guestIndex].orders)
         }
+      }
+    )
+  }
+
+  const removeAllOrdersFromAllGuests = () => {
+    guests.value.forEach(
+      (guest) => { 
+        // console.log('guest orders', guest.orders)
+        guest.orders.splice(0)
       }
     )
   }
@@ -129,7 +149,7 @@ export const useStoreGuests = defineStore('guests', () => {
     getGuestDelStatus, getTotal,
 
 		/* actions */
-		addGuest, deleteGuest, loadGuests,
-    addOrderToGuest, deleteOrderFromGuest
+		addGuest, removeGuest, removeAllGuests, removeAllOrdersFromAllGuests,
+    loadGuests, addOrderToGuest, removeOrderFromGuest
 	}
 })

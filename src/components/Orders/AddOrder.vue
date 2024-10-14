@@ -82,7 +82,7 @@ const storeOrders = useStoreOrders()
 
 /* order */
 const itemRef = ref(null)
-let guestListDisplay = ref(false)
+let guestListDisplay = ref(true)
 
 /* add Order */
 const addOrderFormDefault = {

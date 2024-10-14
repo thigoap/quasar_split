@@ -8,7 +8,6 @@ const routes = [
       { path: 'orders', component: () => import('pages/PageOrders.vue') },
       { path: 'bill', component: () => import('pages/PageBill.vue') },
       { path: 'settings', component: () => import('pages/PageSettings.vue') }
-      
     ]
   },
 

@@ -2,9 +2,9 @@
   <q-page class='flex column'>
     <div class='q-pa-md'>
     <q-list bordered padding>
-      <q-item-label header>{{ $t('app.settings') }}</q-item-label>
+      <!-- <q-item-label header>{{ $t('app.settings') }}</q-item-label>
 
-      <q-separator  />
+      <q-separator  /> -->
 
       <q-item tag='label' v-ripple>
         <q-item-section>
@@ -81,6 +81,19 @@
       </q-item>
 
     </q-list>
+    <p
+    :class='useLightOrDark("text-grey-6", "text-grey-6")'
+    class='q-pt-sm'><br>
+      Você está usando uma versão para testes desse aplicativo.<br>
+      Caso encontre algum bug (erro / problema), ou tenha sugestões de melhorias, sinta-se a vontade para entrar em contato por email ou como preferir.<br>
+      Muito obrigado por me ajudar no desenvolvimento!<br><br>
+      Email: <a href="mailto:appthigo@gmail.com">appthigo@gmail.com</a>
+    </p>
+    <p 
+    :class='useLightOrDark("text-grey-6", "text-grey-9")'
+    class='fixed-bottom-right q-pr-md'
+    >
+    v 0.0.1</p>
     </div>
   </q-page>
 </template>
