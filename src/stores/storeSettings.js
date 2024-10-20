@@ -24,8 +24,8 @@ export const useStoreSettings = defineStore('settings', () => {
 
   // watch tax
   watch(() => settings.tax, value => {
-    if (settings.tax < 0) { settings.tax = 0}
-    if (settings.tax > 50) { settings.tax = 50}
+    if (settings.tax < 0) { settings.tax = 0 }
+    if (settings.tax > 50) { settings.tax = 50 }
   })
 
   /* getters */
@@ -42,6 +42,11 @@ export const useStoreSettings = defineStore('settings', () => {
     if (savedSettings) Object.assign(settings, savedSettings)
   }
 
+  const updateLanguage = (language) => {
+    LocalStorage.setItem('locale', language)
+    // console.log('localStorage locale', LocalStorage.getItem('locale'))
+  }
+
 
   /* return */
   return { 
@@ -51,6 +56,6 @@ export const useStoreSettings = defineStore('settings', () => {
     // getters
 
     // actions
-    loadSettings
+    loadSettings, updateLanguage
   }
 })

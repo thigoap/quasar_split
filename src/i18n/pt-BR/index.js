@@ -8,7 +8,9 @@ export default {
   settings: {
     includeTax: 'Taxa de serviço (0% - 50%)',
     promptToDelete: 'Aviso ao deletar',
-    darkModeAuto: 'Padrão do dispositivo'
+    darkMode: 'Modo escuro',
+    english: 'Inglês',
+    portuguese: 'Português'
   },
 	pageGuests: {
     removedToast: 'Convidado removido',

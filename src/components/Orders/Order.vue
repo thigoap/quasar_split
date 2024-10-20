@@ -28,7 +28,7 @@
 import { useQuasar } from 'quasar'
 import { useCurrencify } from 'src/use/useCurrencify'
 import { useStoreOrders } from 'src/stores/storeOrders'
-import { useStoreSettings } from 'src/stores/storeSettings';
+import { useStoreSettings } from 'src/stores/storeSettings'
 import { useI18n } from 'vue-i18n'
 
 /* quasar */
