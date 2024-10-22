@@ -1,10 +1,14 @@
 import { boot } from 'quasar/wrappers'
 import { createI18n } from 'vue-i18n'
-import { LocalStorage } from 'quasar'
+import { LocalStorage, Lang } from 'quasar'
 import messages from 'src/i18n'
 
-const savedLocale = LocalStorage.getItem('locale') || 'en-US'
-// console.log('boot language', savedLocale)
+let savedLocale = ''
+if (Lang.getLocale() == 'en-US' || Lang.getLocale() == 'pt-BR') {
+  savedLocale = LocalStorage.getItem('locale') || Lang.getLocale()
+} else {
+  savedLocale = LocalStorage.getItem('locale') || 'en-US' 
+}
 
 export default boot(({ app }) => {
   const i18n = createI18n({

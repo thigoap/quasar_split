@@ -57,7 +57,8 @@
       @update:model-value="languageChanged"
       v-model='locale'
       spread
-      class='q-pt-sm'
+      class='q-mt-sm'
+      style='border: 1px solid #1a5069'
       no-caps
       rounded
       unelevated
@@ -74,7 +75,7 @@
     :class='useLightOrDark("text-grey-6", "text-grey-9")'
     class='fixed-bottom-right q-pr-md'
     >
-    v 0.2.0</p>
+    v 0.2.1</p>
 
     </div>
   </q-page>
